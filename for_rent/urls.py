@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
 from reviews_api.views import (
     ReviewDetail,
@@ -27,7 +28,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'allpropertiess', PropertyClassViewSet, basename='allpropertiess')
-
+router.register(r'register', authiView, basename='register')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
