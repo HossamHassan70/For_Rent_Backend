@@ -9,6 +9,7 @@ from reviews_api.serializers import ReviewSerializer
 # from django.shortcuts import get_object_or_404, redirect, render
 # from reviews_api.forms import ReviewForm
 
+
 class ReviewList(APIView):
     def get(self, request):
         reviews = Review.objects.all()
@@ -22,20 +23,21 @@ class ReviewList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class ReviewDetail(APIView):
-    def get_object(self, pk):
+    def get_review(self, pk):
         try:
             return Review.objects.get(pk=pk)
         except Review.DoesNotExist:
-            raise Http404
+            raise Http404("Review does not exist")
 
     def get(self, request, pk):
-        review = self.get_object(pk)
+        review = self.get_review(pk)
         serializer = ReviewSerializer(review)
         return Response(serializer.data)
 
     def put(self, request, pk):
-        review = self.get_object(pk)
+        review = self.get_review(pk)
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -43,7 +45,7 @@ class ReviewDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        review = self.get_object(pk)
+        review = self.get_review(pk)
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
