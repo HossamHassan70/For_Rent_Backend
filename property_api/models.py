@@ -10,7 +10,7 @@ class Property(models.Model):
     Address = models.TextField()
     Availability = models.BooleanField(default=True)
     Price = models.DecimalField(max_digits=10, decimal_places=2)
-    Image = models.ImageField(upload_to='property_images/')
+    Image = models.ImageField(upload_to='static/property_images/')
     Title = models.CharField(max_length=200)
     Description = models.TextField()
     Rooms = models.IntegerField()
