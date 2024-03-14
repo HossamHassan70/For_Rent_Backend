@@ -4,9 +4,18 @@
 
 * User
 
-  * Renter
-  * Owner
-  * Admin
+  - ID
+  - Name
+  - Email
+  - Password
+  - Birthdate
+  - Role
+
+    - Renter
+    - Owner
+    - Admin
+  - Registration date
+  - Validation state
 
   ---
 * Property
@@ -15,12 +24,8 @@
 * Payment
 * Message
 
-
-
-
 ### ERD
 
 ![1709850144079](static/images/README/1709850144079.png)
-
 
 ---

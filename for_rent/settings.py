@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'reviews_api',
     'property_api',
     'authApi',
+    'users_api',
 ]
 
 MIDDLEWARE = [
