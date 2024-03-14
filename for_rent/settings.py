@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Added apps:
     'rest_framework',
     'reviews_api',
+    'property_api',
 ]
 
 MIDDLEWARE = [
