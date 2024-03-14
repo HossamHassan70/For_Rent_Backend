@@ -22,15 +22,20 @@ from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
 from reviews_api.views import ReviewDetail, ReviewList
 from rest_framework.routers import DefaultRouter
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from authApi.views import authiView, LoginView
 
 router = DefaultRouter()
 router.register(r'allpropertiess', PropertyClassViewSet, basename='allpropertiess')
 router.register(r'register', authiView, basename='register')
+router.register(r'authi', authiView, basename='authi')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('reviews/', ReviewList.as_view(), name='review-list'),
     path('reviews/<int:pk>/', ReviewDetail.as_view(), name='review-detail'),
+    path('login/', LoginView.as_view(), name='login'),
     path('', include(router.urls)),
 ]
