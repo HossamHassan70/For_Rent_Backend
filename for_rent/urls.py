@@ -18,15 +18,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
 from reviews_api.views import (
     ReviewDetail,
     ReviewList,
 )
 from rest_framework.routers import DefaultRouter
+from authApi.views import authiView, LoginView
 
 router = DefaultRouter()
 router.register(r'allpropertiess', PropertyClassViewSet, basename='allpropertiess')
+router.register(r'register', authiView, basename='register')
+
 
 
 urlpatterns = [
@@ -34,5 +38,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('reviews/', ReviewList.as_view(), name='review-list'),
     path('reviews/<int:pk>/', ReviewDetail.as_view(), name='review-detail'),
+    path('login/', LoginView.as_view(), name='login'),
     path('', include(router.urls)),
 ]

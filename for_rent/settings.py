@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'reviews_api',
     'property_api',
+    'authApi'
 ]
 
 MIDDLEWARE = [
