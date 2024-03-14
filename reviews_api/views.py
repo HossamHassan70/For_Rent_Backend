@@ -6,10 +6,6 @@ from rest_framework import status
 from reviews_api.serializers import ReviewSerializer
 
 
-# from django.shortcuts import get_object_or_404, redirect, render
-# from reviews_api.forms import ReviewForm
-
-
 class ReviewList(APIView):
     def get(self, request):
         reviews = Review.objects.all()
@@ -48,45 +44,3 @@ class ReviewDetail(APIView):
         review = self.get_review(pk)
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-# using front html
-
-# def review_list(request):
-#     reviews = Review.objects.all()
-#     return render(request, "reviews/review_list.html", {"reviews": reviews})
-
-
-# def review_detail(request, pk):
-#     review = Review.objects.get(pk=pk)
-#     return render(request, "reviews/review_detail.html", {"review": review})
-
-
-# def create_review(request):
-#     if request.method == "POST":
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("review_list")
-#     else:
-#         form = ReviewForm()
-#         return render(request, "reviews/create_review.html", {"form": form})
-
-
-# def update_review(request, pk):
-#     review = Review.objects.get(pk=pk)
-#     if request.method == "POST":
-#         form = ReviewForm(request.POST, instance=review)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("review_list")
-#     else:
-#         form = ReviewForm(instance=review)
-#         return render(request, "reviews/update_review.html", {"form": form, "review": review})
-
-# def review_delete(request, pk):
-#     review = get_object_or_404(Review, pk=pk)
-#     if request.method == "POST":
-#         review.delete()
-#         return redirect("review_list")
-#     return render(request, "reviews/review_delete_confirm.html", {"review": review})
