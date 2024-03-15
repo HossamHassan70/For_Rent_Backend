@@ -20,7 +20,7 @@ from django.urls import include, path
 
 from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
-from reviews_api.views import ReviewDetail, ReviewList
+from reviews_api.views import ReviewViewSet
 from rest_framework.routers import DefaultRouter
 from authApi.views import authiView, LoginView
 from users_api.views import UserViewSet
@@ -29,13 +29,12 @@ router = DefaultRouter()
 router.register(r"properties", PropertyClassViewSet, basename="properties")
 router.register(r"register", authiView, basename="register")
 router.register(r"users", UserViewSet, basename="users")
+router.register(r"reviews", ReviewViewSet, basename="review-list")
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("reviews/", ReviewList.as_view(), name="review-list"),
-    path("reviews/<int:pk>/", ReviewDetail.as_view(), name="review-detail"),
     path("login/", LoginView.as_view(), name="login"),
     path("", include(router.urls)),
 ]
