@@ -26,7 +26,7 @@ from authApi.views import authiView, LoginView
 from users_api.views import UserViewSet
 
 router = DefaultRouter()
-router.register(r"allpropertiess", PropertyClassViewSet, basename="allpropertiess")
+router.register(r"properties", PropertyClassViewSet, basename="properties")
 router.register(r"register", authiView, basename="register")
 router.register(r"users", UserViewSet, basename="users")
 
