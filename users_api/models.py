@@ -8,9 +8,10 @@ class Role(models.TextChoices):
 
 
 class User(models.Model):
+    username = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    # password = models.CharField(max_length=16, blank=True)
+    password = models.CharField(max_length=16, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
