@@ -11,11 +11,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import check_password
 from users_api.models import User
 from users_api.serializers import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your views here.
 class authiView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class =  UserSerializer
+
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class LoginView(APIView):
     def post(self, request):
@@ -30,8 +33,16 @@ class LoginView(APIView):
         except User.DoesNotExist:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        if user.password != password:  # Comparing plaintext passwords
+        if user.password != password: 
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        serializer = UserSerializer(user)  # Assuming you have a serializer defined
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = UserSerializer(user)  
+
+        # JWT 
+        refresh = RefreshToken.for_user(user)
+
+        return Response({
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }, status=status.HTTP_200_OK)

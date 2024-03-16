@@ -17,7 +17,7 @@ class User(models.Model):
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now_add=True)
-    profile_picture =  models.ImageField(upload_to="profile_pictures/")
+    # profile_picture =  models.ImageField(upload_to="profile_pictures/")
 
     def str(self):
         return self.name
