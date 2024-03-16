@@ -18,9 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from reviews_api.views import ReviewViewSet
 from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
-from reviews_api.views import ReviewViewSet
 from rest_framework.routers import DefaultRouter
 from authApi.views import authiView, LoginView
 from users_api.views import UserViewSet

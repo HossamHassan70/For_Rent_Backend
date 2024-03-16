@@ -1,12 +1,24 @@
-from property_api.serializers import PropertySerializer
+from property_api.serializers import PropertyCreateUpdateSerializer, PropertySerializer
 from property_api.models import Property
 from rest_framework import viewsets
+from rest_framework.response import Response
+
 
 class PropertyClassViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
     queryset = Property.objects.all()
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=201, headers=headers)
 
-    def get_queryset(self):
+    def get_serializer_class(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH']:
+            return PropertyCreateUpdateSerializer
+        return PropertySerializer
+def get_queryset(self):
         queryset = Property.objects.all()
 
         # Filter by type
