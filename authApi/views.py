@@ -18,7 +18,7 @@ class authiView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class =  UserSerializer
 
-from rest_framework_simplejwt.tokens import RefreshToken
+
 
 class LoginView(APIView):
     def post(self, request):
