@@ -23,12 +23,13 @@ from property_api.views import PropertyClassViewSet
 from reviews_api.views import ReviewViewSet
 from rest_framework.routers import DefaultRouter
 from authApi.views import authiView, LoginView
-from users_api.views import UserViewSet
+from users_api import urls as app_urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r"properties", PropertyClassViewSet, basename="properties")
 router.register(r"register", authiView, basename="register")
-router.register(r"users", UserViewSet, basename="users")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
 
 
@@ -36,5 +37,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("login/", LoginView.as_view(), name="login"),
+    path('api/', include(app_urls)),
     path("", include(router.urls)),
+
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

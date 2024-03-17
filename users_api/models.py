@@ -1,6 +1,10 @@
 from django.db import models
 
 
+def image_upload(instance, filename):
+    imagename, extension = filename.split(".")
+    return "user/%i.%s" % (instance.id, extension)
+
 class Role(models.TextChoices):
     RENTER = "Renter", "Renter"
     OWNER = "Owner", "Owner"
@@ -17,7 +21,7 @@ class User(models.Model):
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now_add=True)
-    profile_picture =  models.ImageField(upload_to="profile_pictures/")
+    profile_picture =  models.ImageField(upload_to=image_upload, default='blank_profile.png')
 
-    def str(self):
+    def __str__(self):
         return self.name
