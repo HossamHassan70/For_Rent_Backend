@@ -50,12 +50,11 @@ class UserViewSet(viewsets.ModelViewSet):
     #     partial = kwargs.pop("partial", False)
     #     instance = self.get_object()
 
-    #     # Check if user is updating themself or has admin privileges
-    #     if not (request.user.pk == instance.pk or request.user.is_staff):
+    #     if not request.user.is_staff and instance.pk != request.user.pk:
     #         return Response(
-    #         {"detail": "You are not authorized to update this user."},
-    #         status=HTTP_403_FORBIDDEN,
-    #     )
+    #             {"detail": "You are not authorized to update this user."},
+    #             status=HTTP_403_FORBIDDEN,
+    #         )
 
     #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
     #     serializer.is_valid(raise_exception=True)
