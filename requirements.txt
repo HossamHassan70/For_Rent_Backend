@@ -2,8 +2,10 @@ asgiref==3.7.2
 Django==5.0.3
 django-cors-headers==4.3.1
 django-filter==24.1
+django-phonenumber-field==7.3.0
 djangorestframework==3.14.0
 Markdown==3.5.2
+phonenumbers==8.13.32
 pillow==10.2.0
 pytz==2024.1
 sqlparse==0.4.4

@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 def image_upload(instance, filename):
@@ -12,7 +13,9 @@ class Role(models.TextChoices):
 
 
 class User(models.Model):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50 , unique=True)
+    first_name =  models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=16, blank=True)
@@ -20,8 +23,9 @@ class User(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
-    registration_date = models.DateTimeField(auto_now_add=True)
+    registration_date = models.DateTimeField(auto_now=True)
     profile_picture =  models.ImageField(upload_to=image_upload, default='blank_profile.png')
-
+    phone_number = PhoneNumberField(region='EG', unique=True, blank=True, null=True)
+    
     def __str__(self):
         return self.name
