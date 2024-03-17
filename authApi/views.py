@@ -19,7 +19,6 @@ class authiView(viewsets.ModelViewSet):
     serializer_class =  UserSerializer
 
 
-
 class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
@@ -38,11 +37,23 @@ class LoginView(APIView):
 
         serializer = UserSerializer(user)  
 
+        #pay load hna
+        user_data = {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name':user.first_name
+            # infos zyada
+        }
+
         # JWT 
         refresh = RefreshToken.for_user(user)
 
+        # refresh tk
+        refresh['user'] = user_data
+
         return Response({
-            'user': serializer.data,
+            # 'user': serializer.data,
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }, status=status.HTTP_200_OK)
