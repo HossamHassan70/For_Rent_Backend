@@ -42,7 +42,8 @@ class LoginView(APIView):
             'id': user.id,
             'username': user.username,
             'email': user.email,
-            'first_name':user.first_name
+            'firstName':user.first_name,
+            'lastName' : user.last_name
             # infos zyada
         }
 
