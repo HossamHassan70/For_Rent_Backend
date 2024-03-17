@@ -18,7 +18,7 @@ class Property(models.Model):
     address = models.TextField()
     availability = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='static/property_images/', default='static/property_images/safa.jpg', null=True, blank=True)
+    image = models.ImageField(upload_to='static/property_images/', default='static/images/default_prop.jpg')
     rooms = models.IntegerField()
     bathrooms = models.IntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_properties', null=True, blank=True)
