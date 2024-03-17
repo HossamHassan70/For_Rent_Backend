@@ -21,7 +21,6 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=16, blank=True)
-    confirm_password = models.CharField(max_length=16, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
