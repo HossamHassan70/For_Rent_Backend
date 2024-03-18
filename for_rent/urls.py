@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from requests_api.views import RequestViewSet
 from reviews_api.views import ReviewViewSet
 from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
@@ -26,7 +27,6 @@ from authApi.views import authiView, LoginView
 from users_api import urls as app_urls
 from django.conf import settings
 from django.conf.urls.static import static
-
 from users_api.views import UserViewSet
 
 router = DefaultRouter()
@@ -34,13 +34,14 @@ router.register(r"properties", PropertyClassViewSet, basename="properties")
 router.register(r"register", authiView, basename="register")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
 router.register(r'users', UserViewSet, basename='user')
+router.register(r'requests', RequestViewSet, basename='requests')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("login/", LoginView.as_view(), name="login"),
     path('api/', include(app_urls)),
-    path("", include(router.urls)),
+    path('', include(router.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
