@@ -12,6 +12,7 @@ from django.contrib.auth.hashers import check_password
 from users_api.models import User
 from users_api.serializers import UserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from datetime import timedelta
 
 # Create your views here.
 class authiView(viewsets.ModelViewSet):
@@ -53,6 +54,7 @@ class LoginView(APIView):
 
         # JWT 
         refresh = RefreshToken.for_user(user)
+        # refresh.set_exp(lifetime=timedelta(hours=1))
 
         # refresh tk
         refresh['user'] = user_data
