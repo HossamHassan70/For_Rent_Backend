@@ -1,8 +1,5 @@
 from django.db import models
-
 from users_api.models import User
-
-
 
 class Property(models.Model):
     PROPERTY_TYPES = [
@@ -22,5 +19,10 @@ class Property(models.Model):
     rooms = models.IntegerField()
     bathrooms = models.IntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_properties', null=True, blank=True)
-    def str(self):
+    image1 = models.ImageField(upload_to='static/property_images/multiples/', blank=True)
+    image2 = models.ImageField(upload_to='static/property_images/multiples/', blank=True)
+    image3 = models.ImageField(upload_to='static/property_images/multiples/', blank=True)
+
+
+    def __str__(self):
         return self.title
