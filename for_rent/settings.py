@@ -147,3 +147,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+DEFAULT_PROFILE_IMAGE = "user/blank_profile.png"

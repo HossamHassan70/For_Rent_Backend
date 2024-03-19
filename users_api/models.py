@@ -1,7 +1,8 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import FileExtensionValidator
-
+from for_rent import settings
+# from property_api.models import Property
 
 def image_upload(instance, filename):
     imagename, extension = filename.split(".")
@@ -16,34 +17,35 @@ class Role(models.TextChoices):
 
 class User(models.Model):
     username = models.CharField(max_length=50, unique=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=16, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
+    password = models.CharField(max_length=30, blank=True)
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now=True)
+    # user_properties = models.ForeignKey(
+    #     "property_api.Property", related_name="owners", blank=True
+    # )
     profile_picture = models.ImageField(
-        upload_to=image_upload, 
-        default='user/blank_profile.png',
+        upload_to=image_upload,
+        default=settings.MEDIA_URL + settings.DEFAULT_PROFILE_IMAGE,
         validators=[
-            FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg']),
+            FileExtensionValidator(allowed_extensions=["png", "jpg", "jpeg"]),
         ],
         blank=True,
-        null=True
+        null=True,
     )
-    phone_number = PhoneNumberField(region="EG", unique=True, blank=True, null=True)
+    phone_number = PhoneNumberField(region="EG", blank=True, null=True)
 
     def __str__(self):
         return self.name
-    
+
     def get_profile_picture_url(self):
         if self.profile_picture:
             return self.profile_picture.url
         else:
-            # Provide a default image URL or handle the case when no profile picture is available
-            return 'For_Rent_Backend/static/user/blank_profile.png'
-        
-        
+            return (
+                self.profile_picture.url
+                if self.profile_picture
+                else settings.DEFAULT_PROFILE_IMAGE
+            )

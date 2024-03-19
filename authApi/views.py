@@ -43,11 +43,8 @@ class LoginView(APIView):
             'id': user.id,
             'username': user.username,
             'email': user.email,
-            'firstName':user.first_name,
-            'lastName' : user.last_name,
             'phoneNumber': str(user.phone_number),
             'profilePicture' : user.get_profile_picture_url(),
-            'DOB': str(user.birthdate),
             'role': user.role,
             'registration_date':str(user.registration_date)
             # infos zyada
