@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from payment_api.views import PaymentListCreateAPIView
+from payment_api.views import PaymentViewSet
 from requests_api.views import RequestViewSet
 from reviews_api.views import ReviewViewSet
 from authApi.views import authiView
@@ -34,16 +34,16 @@ router = DefaultRouter()
 router.register(r"properties", PropertyClassViewSet, basename="properties")
 router.register(r"register", authiView, basename="register")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
-router.register(r'users', UserViewSet, basename='user')
-router.register(r'requests', RequestViewSet, basename='requests')
-router.register(r'payment', PaymentListCreateAPIView, basename='payment')
+router.register(r"users", UserViewSet, basename="user")
+router.register(r"requests", RequestViewSet, basename="requests")
+router.register(r"payment", PaymentViewSet, basename="payment")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("login/", LoginView.as_view(), name="login"),
-    path('api/', include(app_urls)),
-    path('', include(router.urls)),
+    path("api/", include(app_urls)),
+    path("", include(router.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
