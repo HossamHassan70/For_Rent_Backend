@@ -16,34 +16,13 @@ class Property(models.Model):
     address = models.TextField()
     availability = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(
-        upload_to="static/property_images/", default="static/images/default_prop.jpg"
-    )
+    image = models.ImageField(upload_to="static/property_images/", default="static/images/default_prop.jpg")
     rooms = models.IntegerField()
     bathrooms = models.IntegerField()
-    owner = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="owned_properties",
-        null=True,
-        blank=True,
-    )
-    image1 = models.ImageField(
-        upload_to="static/property_images/multiples/", blank=True
-    )
-    image2 = models.ImageField(
-        upload_to="static/property_images/multiples/", blank=True
-    )
-    image3 = models.ImageField(
-        upload_to="static/property_images/multiples/", blank=True
-    )
-    user_properties = models.ForeignKey(
-        User, 
-        related_name="owners", 
-        blank=True,
-        null=True, 
-        on_delete=models.CASCADE,
-    )
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owned_properties")
+    image1 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
+    image2 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
+    image3 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
 
     def __str__(self):
         return self.title
