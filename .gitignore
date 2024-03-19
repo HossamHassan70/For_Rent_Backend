@@ -4,3 +4,5 @@
 .idea
 db.sqlite3
 *migrations
+user
+static
