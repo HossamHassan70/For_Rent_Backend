@@ -1,6 +1,7 @@
 from django.db import models
 from users_api.models import User
 
+
 class Request(models.Model):
     title = models.CharField(max_length=100)
     message = models.TextField()
