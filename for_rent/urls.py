@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from payment_api.views import PaymentListCreateAPIView
 from requests_api.views import RequestViewSet
 from reviews_api.views import ReviewViewSet
 from authApi.views import authiView
@@ -35,6 +36,7 @@ router.register(r"register", authiView, basename="register")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
 router.register(r'users', UserViewSet, basename='user')
 router.register(r'requests', RequestViewSet, basename='requests')
+router.register(r'payment', PaymentListCreateAPIView, basename='payment')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
