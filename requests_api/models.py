@@ -8,7 +8,8 @@ class Request(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_accepted = models.BooleanField(default=False)
     is_rejected = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner_request")
+    renter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='renter_request')
     rejection_reason = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
