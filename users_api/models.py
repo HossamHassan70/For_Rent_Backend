@@ -2,7 +2,6 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import FileExtensionValidator
 from for_rent import settings
-# from property_api.models import Property
 
 def image_upload(instance, filename):
     imagename, extension = filename.split(".")
@@ -23,12 +22,9 @@ class User(models.Model):
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now=True)
-    # user_properties = models.ForeignKey(
-    #     "property_api.Property", related_name="owners", blank=True
-    # )
     profile_picture = models.ImageField(
         upload_to=image_upload,
-        default=settings.MEDIA_URL + settings.DEFAULT_PROFILE_IMAGE,
+        default= "user/blank_profile.png",
         validators=[
             FileExtensionValidator(allowed_extensions=["png", "jpg", "jpeg"]),
         ],

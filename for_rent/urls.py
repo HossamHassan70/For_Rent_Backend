@@ -31,6 +31,7 @@ from users_api.views import UserViewSet
 
 router = DefaultRouter()
 router.register(r"properties", PropertyClassViewSet, basename="properties")
+router.register(r"properties/search", PropertyClassViewSet.as_view({"get": "search"}), basename="properties-search")
 router.register(r"register", authiView, basename="register")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
 router.register(r'users', UserViewSet, basename='user')
