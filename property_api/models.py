@@ -24,6 +24,8 @@ class Property(models.Model):
     image1 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
     image2 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
     image3 = models.ImageField(upload_to="static/property_images/multiples/", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.title
