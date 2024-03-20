@@ -11,6 +11,7 @@ class Request(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner_request")
     renter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='renter_request')
     rejection_reason = models.CharField(max_length=255, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.title
