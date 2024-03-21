@@ -6,9 +6,8 @@ from django.urls import include, path
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls
+
 """
 List users: /api/users/
 Create a user: /api/users/ (POST request)

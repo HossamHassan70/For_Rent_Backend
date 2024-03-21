@@ -23,17 +23,12 @@ class User(models.Model):
     role = models.CharField(max_length=7, choices=Role.choices, default=Role.RENTER)
     validation_states = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now=True)
-    # user_properties = models.ForeignKey(
-    #     "property_api.Property", related_name="owners", blank=True
-    # )
     profile_picture = models.ImageField(
         upload_to=image_upload,
-        default=settings.MEDIA_URL + settings.DEFAULT_PROFILE_IMAGE,
+        default= settings.DEFAULT_PROFILE_IMAGE,
         validators=[
             FileExtensionValidator(allowed_extensions=["png", "jpg", "jpeg"]),
         ],
-        blank=True,
-        null=True,
     )
     phone_number = PhoneNumberField(region="EG", blank=True, null=True)
 
@@ -44,8 +39,4 @@ class User(models.Model):
         if self.profile_picture:
             return self.profile_picture.url
         else:
-            return (
-                self.profile_picture.url
-                if self.profile_picture
-                else settings.DEFAULT_PROFILE_IMAGE
-            )
+            return settings.DEFAULT_PROFILE_IMAGE

@@ -25,13 +25,13 @@ from authApi.views import authiView
 from property_api.views import PropertyClassViewSet
 from rest_framework.routers import DefaultRouter
 from authApi.views import authiView, LoginView
-from users_api import urls as app_urls
 from django.conf import settings
 from django.conf.urls.static import static
 from users_api.views import UserViewSet
 
 router = DefaultRouter()
 router.register(r"properties", PropertyClassViewSet, basename="properties")
+router.register(r"properties/search", PropertyClassViewSet, basename="properties-search")
 router.register(r"register", authiView, basename="register")
 router.register(r"reviews", ReviewViewSet, basename="review-list")
 router.register(r"users", UserViewSet, basename="user")
@@ -42,7 +42,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("login/", LoginView.as_view(), name="login"),
-    path("api/", include(app_urls)),
+    path("api/", include('users_api.urls')),
+    path("properties/search/", PropertyClassViewSet.as_view({"get": "list"}), name="properties-search"),
     path("", include(router.urls)),
 ]
 
