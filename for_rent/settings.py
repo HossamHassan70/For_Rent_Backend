@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,10 +46,10 @@ INSTALLED_APPS = [
     "authApi",
     "users_api",
     "corsheaders",
-    'phonenumber_field',
-    'requests_api',
-    'payment_api',
-    'jazzmin',
+    "phonenumber_field",
+    "requests_api",
+    "payment_api",
+    "jazzmin",
 ]
 
 MIDDLEWARE = [
@@ -155,22 +154,20 @@ JAZZMIN_SETTINGS = {
     "site_title": "ForRent",
     "site_header": "ForRent",
     "site_brand": "ForRent",
-    "site_icon": "For_Rent_Backend/static/images/logo.jpeg", 
+    "site_icon": "For_Rent_Backend/static/images/logo.jpeg",
     "welcome_sign": "Welcome to ForRent",
     "copyright": "ForRent",
-    "related_modal_active": True,  
+    "related_modal_active": True,
     "user_avatar": None,
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-         {"app": "authApi", "label": "authApi"},
+        {"app": "authApi", "label": "authApi"},
         {"app": "users_api", "label": "users_api"},
         {"app": "property_api", "label": "property_api"},
         {"app": "requests_api", "label": "requests_api"},
         {"app": "payment_api", "label": "payment_api"},
         {"app": "reviews_api", "label": "reviews_api"},
-       
     ],
-   
     "show_sidebar": True,
     "navigation_expanded": True,
     "icons": {
@@ -178,13 +175,12 @@ JAZZMIN_SETTINGS = {
         "auth.user": "fas fa-user",
         "users.User": "fas fa-user",
         "auth.Group": "fas fa-users",
-        "admin.LogEntry": "fas fa-file", 
+        "admin.LogEntry": "fas fa-file",
         "property_api.Property": "fas fa-home",
-       "requests_api.Request":"fas fa-bell" ,
+        "requests_api.Request": "fas fa-bell",
         "payment_api.Payment": "fas fa-money-bill",
         "reviews_api.Review": "fas fa-star",
         "users_api.User": "fas fa-user",
-
     },
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-arrow-circle-right",
@@ -194,8 +190,8 @@ JAZZMIN_SETTINGS = {
     "changeform_format_overrides": {
         "auth.user": "collapsible",
         "auth.group": "vertical_tabs",
-    }
-    }
+    },
+}
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
