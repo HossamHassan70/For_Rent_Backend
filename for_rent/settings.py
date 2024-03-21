@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'requests_api',
     'payment_api',
+    'jazzmin',
 ]
 
 MIDDLEWARE = [
