@@ -1,6 +1,9 @@
 from django.contrib import admin
 
 
-
-# Register your models here.
-
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ('title','price', )
+    search_fields = ['title']
+	
+    
+admin.site.register(Request,RequestAdmin)
