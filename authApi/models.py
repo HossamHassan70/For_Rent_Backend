@@ -3,12 +3,13 @@ from datetime import datetime, timedelta
 import random
 from django.db import models
 from django.core.mail import send_mail
+from django.utils import timezone
 
 
 class UserEmailVerification(models.Model):
     email = models.EmailField(unique=True)
     code = models.CharField(max_length=6, default=000000)
-    expireTime = models.DateTimeField()
+    expireTime = timezone.now() + timedelta(days=1)
 
     def __str__(self):
         return f"{self.email} | {self.code} | expires: {self.expireTime}"
@@ -26,4 +27,3 @@ class UserEmailVerification(models.Model):
         self.code = random.randint(100000, 999999)
         self.expireTime = datetime.now() + timedelta(days=1)
         self.save()
-
