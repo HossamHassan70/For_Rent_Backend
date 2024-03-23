@@ -1,6 +1,7 @@
 from property_api.serializers import PropertySerializer
 from property_api.models import Property
 from rest_framework import viewsets, filters
+from decimal import Decimal
 
 
 class PropertyClassViewSet(viewsets.ModelViewSet):
@@ -18,6 +19,7 @@ class PropertyClassViewSet(viewsets.ModelViewSet):
 
         price_param = self.request.query_params.get("price", None)
         if price_param:
+            price_param = Decimal(price_param)
             queryset = queryset.filter(price=price_param)
 
         rooms_param = self.request.query_params.get("rooms", None)
