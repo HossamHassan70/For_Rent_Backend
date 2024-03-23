@@ -4,11 +4,24 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_403_FORBIDDEN
 from .models import User
 from .serializers import UserSerializer
+from django.core.mail import send_mail
+import random
+from authApi.models import UserEmailVerification
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    def perform_create(self, serializer):
+        # Call the parent perform_create method to save the user instance
+        instance = serializer.save()
+        instance.validation_states = False
+
+        new_verification = UserEmailVerification(email=instance.email)
+        new_verification.generateCode()
+        new_verification.sendCode()
+        instance.save()
+
     # permission_classes = [permissions.IsAuthenticated]  # Uncomment for authentication
 
     # def get_queryset(self):

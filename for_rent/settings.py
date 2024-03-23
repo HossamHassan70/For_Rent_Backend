@@ -224,3 +224,9 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success",
     },
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'amraboelmagdhussien@gmail.com'
+EMAIL_HOST_PASSWORD = 'cwqk dxkj mlew gucp'
+EMAIL_PORT = 587
