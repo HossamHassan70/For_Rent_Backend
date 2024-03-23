@@ -1,13 +1,13 @@
 import subprocess
 
 commands = [
-    "py manage.py makemigrations property_api",
-    "py manage.py makemigrations reviews_api",
-    "py manage.py makemigrations users_api",
-    "py manage.py makemigrations authApi",
-    "py manage.py makemigrations requests_api",
-    "py manage.py makemigrations payment_api",
-    "py manage.py migrate"
+    "python3 manage.py makemigrations property_api",
+    "python3 manage.py makemigrations reviews_api",
+    "python3 manage.py makemigrations users_api",
+    "python3 manage.py makemigrations authApi",
+    "python3 manage.py makemigrations requests_api",
+    "python3 manage.py makemigrations payment_api",
+    "python3 manage.py migrate"
 ]
 
 for command in commands:

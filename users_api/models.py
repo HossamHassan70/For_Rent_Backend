@@ -29,6 +29,7 @@ class User(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=["png", "jpg", "jpeg"]),
         ],
+        null=True,blank=True
     )
     phone_number = PhoneNumberField(region="EG", blank=True, null=True)
 
