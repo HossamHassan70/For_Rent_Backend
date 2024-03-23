@@ -74,7 +74,7 @@ class LoginView(APIView):
 
 
 class VerifyCode(APIView):
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
 
     def post(self, request):
         # Extract JWT token from Authorization header
