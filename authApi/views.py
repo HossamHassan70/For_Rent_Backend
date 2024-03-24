@@ -77,19 +77,19 @@ class VerifyCode(APIView):
     # authentication_classes = [JWTAuthentication]
 
     def post(self, request):
-        # Extract JWT token from Authorization header
+
         token = request.headers.get("Authorization").split(" ")[1]
-        # verify and decode token
+
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         print(f"this is decoded Token {decoded_token}")
 
-        # get email decoded
+   
         email = decoded_token.get("user").get(
             "email"
-        )  # Extract email from decoded token
+        )  
         print(f"this is user email {email}")
 
-        # 3 search for UserEmailVerification with matching email
+
         try:
             user_verification = UserEmailVerification.objects.get(email=email)
             user = User.objects.get(email=email)
@@ -99,9 +99,9 @@ class VerifyCode(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        # Compare code in request with code in UserEmailVerification instance
+
         if str(user_verification.code) == str(request.data.get("code")):
-            # if matching, change states to true
+
             user.validation_states = True
             user.save()
             return Response(

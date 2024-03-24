@@ -16,7 +16,7 @@ class UserEmailVerification(models.Model):
 
     def sendCode(self):
         send_mail(
-            subject="Welcome to the platform",
+            subject="Welcome to FoRent",
             message=f"Thank you for signing up to our platform\nYour verification code is: {self.code}",
             from_email="noreply@myrent.com",
             recipient_list=[self.email],
